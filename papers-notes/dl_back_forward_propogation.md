@@ -55,9 +55,9 @@ And the people who came up with neural networks were pretty clever in that they 
 
 $$
 \begin{align*}
-\mathbf{z}_1 = \sigma(A_1 \mathbf{u} + \mathbf{b}_1), \quad
-\mathbf{z}_i = \sigma(A_i \mathbf{z}_{i - 1} + \mathbf{b}_i), \quad
-\hat{\mathbf{v}} = A_l \mathbf{z}_{l - 1} + \mathbf{b}_l \approx \mathbf{v}
+\mathbf{z}_1 &= \sigma(A_1 \mathbf{u} + \mathbf{b}_1), \quad \\
+\mathbf{z}_i &= \sigma(A_i \mathbf{z}_{i - 1} + \mathbf{b}_i), \quad \\
+\hat{\mathbf{v}} &= A_l \mathbf{z}_{l - 1} + \mathbf{b}_l \approx \mathbf \\{v}
 \end{align*}
 $$
 
