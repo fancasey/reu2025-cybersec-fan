@@ -81,6 +81,41 @@ where $\mathbf{u}, \mathbf{v}$ are fixed and $\hat{\mathbf{v}}$ is calculated us
 ## Gradient descent
 Now we have a cost function that takes in two variables (or many variables if you think of each component of $\mathbf{A}$ and $\mathbf{b}$ to be a variable) and turns it into one. We'd like to minimize this: to do this, we're going to use **gradient descent**.
 
-I mentioned the gradient in the [chain rule section](#first-the-chain-rule). Basically, it's the partial derivative of a function for each variable in that function. My claim is that the gradient tells us (locally) the way to move so that we travel the farthest, *and* how much how to move by.
+I mentioned the gradient in the [chain rule section](#first-the-chain-rule). Basically, it's the partial derivative of a function for each variable in that function. My claim is that the gradient tells us (locally) the way to move so that we travel the farthest, *and* how much how to move by. In other words, the gradient shows the direction (and magnitude) of *steepest ascent*.
+
+I think it's easier to first see how the gradient shows magnitude. If you think about taking a step in each dimension along the current trajectory and seeing where that takes you from your function $f$, (aka the partial derivative), then you end up with the gradient. If a step makes you go higher, then the partial derivative will go higher, and vice versa. So it makes sense that larger values in the gradient correspond to bigger changes in your function.
+
+Now to see why the gradient shows the direction of steepest of ascent, we'll consider all unit vectors at our point. We know the gradient, which can be thought of as taking a step in all directions and seeing where it takes us. So which unit vector will give us our steepest ascent? One way to think about how far will go is by projecting that unit vector onto the gradient. For example, let's consider $\nabla f = \begin{bmatrix}1 \\ 0\end{bmatrix}$ and and the unit vectors $\begin{bmatrix} 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 0 \\ 1 \end{bmatrix}$. Well the first vector is taking a step in the $x$ dimension, so $f$ is expected to increase by $1$. The second vector takes a step in the $y$ dimension, which the gradient shows as having no change, we $f$ is expected to not change. So basically, we take the value in each component of our unit vector and multiply it by the corresponding component in the gradient: this is just the dot product! And so now we can answer our question, which unit vector, when dotted with the gradient, will give us the greatest value? And if we think of the dot product in terms of projections, we can ask the related question: which unit vector, when projected onto the gradient vector, will have the largest magnitude? And the answer to this is the gradient normalized. So therefore the direction of steepest ascent is the gradient itself!
+
+And if the gradient shows us the direction of steepest ascent, then its negative should be the direction of *steepest descent*.
+
+So why do we care? What are we going down? Well, if you remember, we want to minimize our cost function. One way to do this, if you've taken multi-variable calculus, would be to find where the gradient is 0, and consider each of those points (you can do additional tests to knock out some points), as these will all be local minima. But as functions get more and more complicated, finding the local minima will more annoying, and local minima aren't always global minima.
+
+So instead, we're going to take the route of gradient descent. We'll start out at a random point in our space $\mathbf{x}_0$. We take the negative of the gradient there, and we'll take a step in that direction:
+
+$$
+\mathbf{x}_{n + 1} = \mathbf{x}_n - \nabla f(\mathbf{x}_n)
+$$
+
+And often, we want to control our granularity, so we introduce a parameter called the *learning rate*, that just adjusts the size of the steps we take.
+
+$$
+\mathbf{x}_{n + 1} = \mathbf{x}_n - \gamma \nabla f(\mathbf{x}_n)
+$$
+
+And we continue this process, either for a fixed number of steps or when the gradient gets small enough.
+
+I must note that while this is faster than the method of finding local minima (and always possible given that our function is differentiable) and may find global minima, we have the problem of getting "stuck" in a local minimum. I mean, if we're at a local min, then the gradient will be 0 and we won't move, even if we're a a "high point" relative to the rest of the graph.
 
 ## Back propagation
+
+So now we have our method of minimizing, we just need to minimize our cost function. Well how do we do that? We have to first find our gradient, which will be populated by 
+
+$$\frac{\partial c}{\partial A_i} \quad \forall A_i \in \mathbf{A}$$
+ and 
+ 
+$$\frac{\partial c}{\partial \mathbf{b}_i} \quad \forall \mathbf{b}_i \in \mathbf{b}$$
+
+But taking these partials won't be so easy! I mean, some $A_i, \, \mathbf{b}_i$ could be used way earlier, meaning we've applied so many functions (linear transformations and shifts, sigmoid functions) to get from there to our final result in $c$. So that's where the chain rule comes in! We just need to **chain (or propagate) backwards** until we get the partial we want!
+
+So now we have the gradient, we can finally do gradient descent. we get $\mathbf{A}, \, \mathbf{b}$ that minimize $c$, so we've fitted our data to the expected output. Hooray!
