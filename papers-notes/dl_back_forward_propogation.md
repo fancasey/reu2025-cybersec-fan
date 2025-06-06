@@ -52,7 +52,9 @@ $$A' \mathbf{z} + \mathbf{b}' \approx \mathbf{v}$$
 
 ## Forward pass
 And the people who came up with neural networks were pretty clever in that they applied this logic multiple times. I'm gonna be pretty lazy with my notation here, so feel free to follow somewhere else if you don't understand, but the idea is to have multiple linear transformations & additions of however many dimensions you want, passing them through activation functions along the way, as long as the sequence is able to take in some $\mathbf{u}$ and give out some $\hat{\mathbf{v}}$, which looks like this:
+
 $$\mathbf{z_{1}} = \sigma (A_{1} \mathbf{u} + \mathbf{b_{1}}), \mathbf{z}_{i} = \sigma (A_{i} \mathbf{z}_{i - 1} + \mathbf{b_{i}}), A_{l} \mathbf{z}_{l} + \mathbf{b}_{l} = \hat{\mathbf{v}} \approx \mathbf{v}$$
+
 where $l$ is 1 more than the number of layers there are. Going through this is called a **forward pass**.
 
 ## The cost function
