@@ -1,4 +1,4 @@
-# Forward Passes and Back Propogation
+# Forward Passes and Back Propagation
 This is the essential process of deep learning.
 ## [First, the Chain Rule](https://machinelearningmastery.com/the-chain-rule-of-calculus-for-univariate-and-multivariate-functions/)
 We learned in Calc I that for one variable $x$, 
@@ -38,7 +38,7 @@ $$\begin{align*}
 Basically, the way a neural network is a model that tries to solve a problem based on data. We formulate problems this way: given an input, you expect an output. We'll take our data and format it into vectors: the input is an $\mathbf{u} \in \mathbb{R^m}$ vector and the output is an $\mathbf{v} \in \mathbb{R^n}$ vector. Maybe there's a linear relationship between the input and output! So we try to find $A \in \mathbb{R^n} \times \mathbb{R^m}, \mathbf{b} \in \mathbb{R^n}$ such that
 
 $$A \mathbf{u} + \mathbf{b} \approx \mathbf{v}$$
-*Note:* $A$ and $\mathbf{b}$ are not given to us. We are only given $\mathbf{u}$, and we have to **find** the $A$ and $\mathbf{b}$ that get us close to $\mathbf{v}$. How to do this is described in the [back propogation section](#back-propogation).
+*Note:* $A$ and $\mathbf{b}$ are not given to us. We are only given $\mathbf{u}$, and we have to **find** the $A$ and $\mathbf{b}$ that get us close to $\mathbf{v}$. How to do this is described in the [back propagation section](#back-propagation).
 
 But as we see in real life, not all relationships are linear! So we need add an activation function (ReLU, sigmoid) that is non-linear. Let's use the sigmoid function. So now we have:
 
@@ -83,4 +83,4 @@ Now we have a cost function that takes in two variables (or many variables if yo
 
 I mentioned the gradient in the [chain rule section](#first-the-chain-rule). Basically, it's the partial derivative of a function for each variable in that function. My claim is that the gradient tells us (locally) the way to move so that we travel the farthest, *and* how much how to move by.
 
-## Back propogation
+## Back propagation
