@@ -1,0 +1,25 @@
+# [Grant Proposal Management System](https://qrs23.techconf.org/download/webpub/pdfs/QRS-C2023-56EpUKA3a3CGa6xc1KYNzL/593900a157/593900a157.pdf)
+## Purpose
+Writing grants has a lot of moving parts: a Primary Investigator (PI) needs to decide Co-PIs, Senior Personnel (SP), etc. and then once they submit their proposal in a Proposal Datasheet (PDS), several people (Department heads, chairs, review boards, etc.) must approve/disapprove the proposal. This process involves many users, some of whom have different access abilities than others (for example, the PI can create/delete the PDS, but Co-PIs should not), and it also has many moving parts/steps, some of which can be done in parallel. When scaled up to a college/university level, where multiple faculty from several departments are sending proposals through, it can be difficult to keep track of who's allowed to do what to which document, as well as which stage each document is in. Grant Proposal Management Systems aim to streamline & automate this system.
+### This paper focuses on making secure GPMS
+More specifically, it wants to make sure that people have the right capabilites at all times. Access is not static: for example, a PI is able to create/delete a PDS before they submit it for approval, but once they submit it for approval, they cannot create/delete it until after the proper parties review it. Hence, maintaining proper access is not an easy task.
+## Forms of access control
+### Role Based Access Control (RBAC)
+This is the classical way to assign access control. Roles have specific permissions, and each user is assigned to a role. Who gets to do what is clearly outlined by their role, but as systems get more complicated, the number of roles will increase, making the system harder to understand.
+### Attribute Based Access Control (ABAC)
+ABAC works the following way: each user is given some attributes (job title, date started, etc.) and each attribute has a set of permissions associated with it. A specific user's permission to an object is then decided by their attributes in a conservative way. This allows for much more granularity than RBAC–a role can just be a combination of attributes–but also makes it much more difficult to immediately see who is able to do what (you'd need to comb through their attributes)
+### Next Generation Access Control (NGAC)
+NGAC aims to bridge the gap between RBAC and ABAC. Users and objects have attributes still, but attributes are also related to other attributes, allowing for us to create graphs of access, where nodes are users, user attributes, objects, and object attributes (as well as policies that define who can do what), and edges are relations between users, relations between objects, and permissions user attributes are given for specific objects. With this, you still assign attributes to users, allowing for that same level of granularity as ABAC, and to find what permissions that user has, you can just do a walk along the graph you've made, allowing for that fast recognition of permission that RBAC gives.
+<br></br>
+This paper focuses on making a GPMS that uses NGAC for its clear advantages in a complex network of users and objects.
+
+## Obligations
+Obligations are events that are associated with user actions. For example, when a PI assigns a Co-PI, they want that Co-PI to also have read/write permission for their PDS (the PI is "obligated" to give access), so an event is triggered whenever a PI assigns a Co-PI to automatically give that Co-PI read/write permission. This allows for the dynamic access control that is required in GPMSs.
+
+## This paper's goals
+This paper is focused on making a fleshed out GPMS with NGAC and obligations. It provides the necessary specification and introduces a RESTful API, along with a website, the authors have created that implements this specification. In its specification, the paper describes the policies, actions, users, and general flow that is necessary for a proper GPMS, and formalizes all of this in set notation.
+
+## My Questions
+- This paper seems to be more of an application, or a proof of concept, of NGAC + Obligations, which it claims has never been done before. This may be true, but the idea doesn't seem too novel to me: Obligations (at least from my understanding) are meant to be used with access control, so NGAC + Obligations is not too farfetched. Certainly the scale of this project is impressive, but it's not clear to me: what's the new idea that's being introduced here?
+- The authors mention they have thoroughly tested their application with JUnit and Selenium. I'd like to see these tests, especially to understand what are common bugs that were planned for as well as edge cases. I think from a cybersecurity standpoint, this is very important.
+- I am not sure how to apply agents to this. It seems that this is already a nearly fully autonomous framework, and since everything is rule based, it's reliable and doesn't make sense for it to be replaced by agents. Maybe we could use agents to create the rules, or simulate/test it?

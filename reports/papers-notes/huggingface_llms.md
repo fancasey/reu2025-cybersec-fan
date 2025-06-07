@@ -1,0 +1,1 @@
+Decoders (LLMs in general) are greedy–don't find the most probable sequence that follows, but follows the most probable word one at a time.
