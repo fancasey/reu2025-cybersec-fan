@@ -14,3 +14,5 @@
 - The pi_agent has to be able to defer to the user for more than just asking for clarification. What if the user is unclear as to what the task is? There are many inputs that might not look like PDSs and would confuse the pi_agent, but its only option to terminate is once the would-be PDS reaches the research administrator.
     - see test_ask_for_help
 - Maybe we could make an LM to detect malicious prompts? Or we could make an optimizer to develop bad prompts?
+- For an "attack agent" $M_a$, we could prompt it to get us some resource. $M_a$ comes up with a prompt, tries it on the agent system, and gets feedback upon termination (ie if it was able to successfully get it).
+    - must find out how to optimize, however (could use something like they did in Imprompter)
