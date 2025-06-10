@@ -1,0 +1,16 @@
+pi_agent = AssistantAgent(
+    "pi_agent",
+    model_client=model_client4o,
+    # handoffs=["cs_chair_agent","math_chair_agent", "bm_agent"],
+    handoffs=["cs_chair_agent","math_chair_agent", "bm_agent", "user"],
+    system_message="""You are a proposal investigator.
+    You are to check that every field of the proposal datasheet is completed and submit the proposal to Chair.
+    The information to check includes project id, funding, and project information.
+    Once the check is completed, you need to submit proposal and transfer it to the current approval entity for approval.
+    If the information is incomplete, ask user for clarification. Also, ask user for classification if anyone disapproves the proposal. DO NOT HANDOFF TO USER OTHERWISE.
+    Only when BOTH chairs approve the proposal, move to bussiness manager.
+    Use TERMINATE when the proposal approval process is submitted by Research Administrator or if it was declined by Research Administrator.
+    Only use one the most appropriate handoff.
+    """,
+    tools=[submit_proposal],
+)
