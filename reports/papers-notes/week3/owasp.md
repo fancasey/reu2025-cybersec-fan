@@ -3,12 +3,27 @@
 
 ## Vocab
 - **Prompt Injection**: A prompt that causes the LLM to perform unexpected behavior. It may tell the LLM to do things that are unsafe (eg reveal PII, generate harmful content, etc)
-- **Jailbreaking**: A type of prompt injection that tell the LLM to disregard its safety protocol.
+- **Jailbreaking**: A type of prompt injection that tell the LLM to disregard its safety protocol
 - **RAG Triad**: context relevance, groundedness, question/answer relevance
 - **Least privilege**: Only grant access to data that is necessary for user
 - **Federated learning**: Training models from different servers/devices on different data. Only sends updates to weights from each machine, not the data (ie data remains decentralized)
 - **Differential privacy**: adding noise to individual data to make them harder to locate
-- **ROME (aka lobotomization)**: 
+- **ROME (aka lobotomization)**: a method of modifying certain weights in a model to change general knowledge, not just specific response patterns (see paper for more information)
+- **Provenence assurance**: making sure the origin of training data can be traced
+- **Low-Rank Adaptation (LoRA)**: a method of fine-tuning by adding only a small number of tunable parameters to a pretrained model
+- **Model merging**: combining the parameters of multiple models into a new model
+- **Red teaming**: simulation of attacks. "red team" (attackers) attacking "blue team" (organization/defenders)
+- **Software Bill of Materials (SBOM)**: an inventory of packages that can be checked for vulnerabilities
+- **Code signing**: asymmetric encryption on your code to ensure authenticity
+- **Data poisoning**: when training data/embeddings are manipulated to introduce vulnerabilities, backdoors, or biases. Happens during pretraining, fine-tuning, or data embedding
+- **Malicious pickling**: malware embedded in software that runs when the program runs
+- **Sandbox**: an isolated environment for a system to run unknown programs. A **strict sandbox** is an especially restrictive sandbox.
+- **Data version control (DVC)**: a way to keep track of previous versions of data; good way to see changes
+- **Cross site scripting (XSS)**: injecting scripts into a legitimate web page that are run by the browser
+- **Cross site request forgery (CSRF)**: tricking a user into submitting HTTP requests into somewhere they're already authenticated
+- **Server-side request forgery (SSRF)**: manipulating a server to make requests to unintended locations
+- **Content Security Policy (CSP)**: mechanism that allows developers to control which resources a page can load
+- **Complete mediation principle**: every access to a protected resource should be checked for authorization
 
 ## Prompt Injections
 ### Overview
@@ -47,6 +62,7 @@ Confidential data (eg PII, financial documents, secret research, etc) is often s
 - Advanced techniques
     1. Homomorphic encryption
     2. Tokenization and redaction; you're able to detect patterns of sensitive data & redact them before analyzing
+
 ## Supply chain
 ### Overview
 Getting an LLM to a user involves many steps, and often involves running many processes on many different machines. There are opportunities for many of these steps to be "poisoned," causing the model to perform in malicious/unintended ways.
@@ -55,10 +71,68 @@ Getting an LLM to a user involves many steps, and often involves running many pr
 - Different licenses can be confusing and hard to manage
 - Old/deprecated models can have security risks
 - Using pretrained models that are vulnerable (biases, backdoors, etc). Pretrained models could be attacked by poisoning the dataset or tampering with ROME (aka lobotomization)
+- Models do not provide provenence assurance. There is limited information for many models (eg what data they were trained on, how they were trained, etc), and no guarantees on what they claim to be.
+- Malicious LoRA adapters can affect pretrained models
+- There are vulnerabilities with model merging, and merging is very common. Conversation bots may also introduce malicious code into models.
+- If a model is on-device, there are more tools available to an attack (OS, firmware) to tamper with or reverse-engineer the model
+- Bad terms and conditions let people train models on sensitive data & copyrighted material
+
+### Mitigation
+- Keep careful track of sources
+- follow mitigation strategies (like in OWASP's *A06:2021 – Vulnerable and Outdated Components*)
+- Lots of testing of model & data: red teaming, trustworthy benchmarks (eg Decoding Trust)
+- keep track of packages, licenses, & environments with the corresponding tools (eg SBOM, 3rd party tools, *HuggingFace SF_Convertbot Scanner*)
+- use verified sources, 3rd party integrity checks (signing, file hashing)
+- encrypt models deployed on edge (ie closer to local devices)
+
 ## Data and modeling poisoning
+### Overview
+Data poisoning is an integrity attack and should be considered especially when using external sources. Attackers can also pickle models. You can also poison data to create a "sleeper agent" that leads to a backdoor upon a certain trigger. Data poisoning can happen on purpose ("Split-view Data Poisoning" and "Frontrunning poisoning"), by accessing external data sources, or by unaware users. Poison could be harmful content or sensitive content.
+### Mitigation
+- Track and test data and model outputs (data version control, red teaming)
+- Use sandboxing when interacting with external sources.
+- Fine tune for specific tasks when possible
+- Use RAG & grounding
+
 ## Improper output handling
+### Overview
+Insufficient data validation, sanitization, and handling of outputs (ie giving users additional functionality). Can lead to XSS, CSRF, SSRF, privilege escalation, remote code execution. These kinds of attacks often depend on the environment in which the LLM is running, which can cause certain output to run code (eg shell, browser, etc).
+### Mitigation
+- treat model as a user (0-trust approach, strict CSP), check inputs/outputs
+- follow OWASP ASVS (Application Security Verification Standard)
+- encode output to prevent code execution
+    - consider environment & perform encoding based on that
+- prepare/fill in args for database queries
+- robust logging/monitoring
+
 ## Excessive Agency
+### Overview
+Damaging actions from an agent in response to unexpected, ambiguous, or manipulated outputs from an LLM. Could be from hallucination or prompt injection. Often due to:
+- excessive functionality
+    - access to unnecessary functions/tools
+    - open-ended functionality
+- excessive permissions
+    - eg an agent that needs to access a specific user's information is given the ability to see all information
+- excessive autonomy
+    - doesn't verify/approve high-impact actions (eg deleting)
+
+### Mitigation
+- minimize extensions and extension functionality; avoid open-ended extensions
+- minimize extension permissions, stay in user's context
+- require user approval (HITL); complete mediation
+- sanitize inputs/outputs: OWASP's ASVS (Application Security Verification Standard), Static Application Security Testing (SAST), and Dynamic and Interactive application testing (DAST, IAST)
+- Log extension activity
+- Implement rate limiting
+
 ## System prompt leakage
+### Overview
+System prompts should not be considered secret/a security control. Don't put sensitive data in your system prompt. There are always strong (ie deterministic) or safe ways to this instead. The problem isn't that the system prompt is revealed, it's that information that shouldn't be in the system prompt will then be revealed (even if not the exact words).
+### Mitigation
+- externalize information to the systems the model doesn't directly access
+- use external guardrails and systems to ensure model behavior
+- security controls should be independent of the LLM
+    - want them to be deterministic and auditable
+    
 ## Vector and embedding weaknesses
 ## Misinformation
 ## Unbounded consumption
