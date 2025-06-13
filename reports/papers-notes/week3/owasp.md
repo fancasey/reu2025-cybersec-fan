@@ -24,6 +24,8 @@
 - **Server-side request forgery (SSRF)**: manipulating a server to make requests to unintended locations
 - **Content Security Policy (CSP)**: mechanism that allows developers to control which resources a page can load
 - **Complete mediation principle**: every access to a protected resource should be checked for authorization
+- **Side channel attack**: an attack that exploits the side effects of a system instead of the encryption. Can often be used to gather information about encoding/keys/data
+- **MLOps**: DevOps for ML; automates ML cycle
 
 ## Prompt Injections
 ### Overview
@@ -132,7 +134,54 @@ System prompts should not be considered secret/a security control. Don't put sen
 - use external guardrails and systems to ensure model behavior
 - security controls should be independent of the LLM
     - want them to be deterministic and auditable
-    
+
 ## Vector and embedding weaknesses
+### Overview
+Since RAG uses vector embedding, LLMs that use it are especially prone to having vulnerable embeddings being manipulated.
+### Risks
+- poor embedding can lead to unauthorized/sensitive information being retrieved from vectors
+- if different systems share the same vector database, there may be leakage. Different data sources can contradct (eg two systems in federated learning or RAG with old data LLM was trained on)
+- vulnerable embeddings can be reverted to retrieve lots of information
+- vectors can be poisoned
+- RAG can change behavior (eg reduce emotional intelligence)
+### Mitigation
+- permission/access control & strict partitioning
+- validate & monitor data from RAG & data from multiple sources
+
 ## Misinformation
+### Overview
+Misinformation comes from hallucinations, which are a result of statistically probable outputs without real understandig behind those outputs, and biases in the data. Users might also overrely on LLM outputs, aggravating the issue. Some examples of misinformation are:
+- stating incorrect facts, baseless claims, and coming up with fake evidence
+- giving the illusion of expertise, leading to users trusting an incorrect statement
+- unsafe code, pulling from libraries that are deprecated or don't exist anymore
+
+### Mitigation
+- RAG to verify, other automatic validation
+- fine tune (eg parameter efficient tuning (PET), CoT)
+- encourage cross checking & tell users risks of LLM outputs
+- establish secure coding practices
+
 ## Unbounded consumption
+### Overview
+Unbounded consumption happens when an LLM generates too much output. This can lead to denial of service, economic losses, model theft, & service degradation. Since LLMs are often on the cloud & are computationally expensive, they are more prone to resource abuses.
+### Attacks
+- variable length input flood: sending many requests of different lengths, abusing slow processing
+- Denial of Wallet (DoW): submitting many many requests, draining the provider's wallet (due to cost-per-use model of cloud AI services)
+- continuous input overflow: input that exceeds the context window can slow things down
+- complex queries can slow the system down
+- use the API to collect information (w/ prompt injection) about the model. Then make a partial model or a shadow model
+- use a model's response to train a functional copy of it
+- exploit input filtering techniques of the model to execute side-channel attacks, gathering weights
+### Mitigation
+- Check inputs
+- Reduce information (eg logbits, logprobs) in API output
+- rate limiting, timeouts/throttling
+- monitor and manage resources dynamically
+- restrict LLM's access to resources (network, internal, API) with a sandbox
+- watermarking to find unauthorized use of outputs
+- graceful degradation: degrade under heavy load gradually
+- train against adversarial prompts
+- check for known glitch tokens
+- strong access control (eg RBAC) & least privilege
+- use a centralized ML model inventory/registry
+- MLOps w/ governance, tracking, & approval workflows
