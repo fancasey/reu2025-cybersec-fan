@@ -1,0 +1,2 @@
+# [Breaking Agents](Breaking-Agents-Compromising-Autonomous-LLM-Agents-Through-Malfunction-Amplification.pdf)
+> Zhang, Boyang, et al. "Breaking agents: Compromising autonomous llm agents through malfunction amplification." *arXiv preprint arXiv:2407.20859* (2024).
