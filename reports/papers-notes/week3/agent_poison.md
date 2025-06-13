@@ -1,0 +1,2 @@
+# [agentpoison](https://arxiv.org/pdf/2407.12784)
+> Chen, Zhaorun, et al. "Agentpoison: Red-teaming llm agents via poisoning memory or knowledge bases." *Advances in Neural Information Processing Systems 37* (2024): 130185-130213.

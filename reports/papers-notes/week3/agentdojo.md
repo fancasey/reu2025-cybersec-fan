@@ -1,0 +1,2 @@
+# [agentdojo](https://arxiv.org/pdf/2406.13352)
+> Debenedetti, Edoardo, et al. "Agentdojo: A dynamic environment to evaluate attacks and defenses for llm agents." *arXiv preprint arXiv:2406.13352* (2024).

@@ -1,0 +1,2 @@
+# [Breaking down the defenses](https://arxiv.org/pdf/2403.04786)
+> Chowdhury, Arijit Ghosh, et al. "Breaking down the defenses: A comparative survey of attacks on large language models." *arXiv preprint arXiv:2403.04786* (2024).

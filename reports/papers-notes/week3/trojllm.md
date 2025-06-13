@@ -1,0 +1,2 @@
+# [Trojllm](https://arxiv.org/pdf/2306.06815)
+> Xue, Jiaqi, et al. "Trojllm: A black-box trojan prompt attack on large language models." *Advances in Neural Information Processing Systems 36* (2023): 65665-65677.

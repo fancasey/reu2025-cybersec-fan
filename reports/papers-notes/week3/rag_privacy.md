@@ -1,0 +1,2 @@
+# [RAG privacy](https://arxiv.org/pdf/2402.16893)
+> Zeng, Shenglai, et al. "The good and the bad: Exploring privacy issues in retrieval-augmented generation (rag)." *arXiv preprint arXiv:2402.16893* (2024).

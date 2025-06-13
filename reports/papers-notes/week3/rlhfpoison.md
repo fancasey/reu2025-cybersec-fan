@@ -1,0 +1,2 @@
+# [RLHFPoison](https://arxiv.org/pdf/2311.09641)
+> Wang, Jiongxiao, et al. "RLHFPoison: Reward poisoning attack for reinforcement learning with human feedback in large language models." *arXiv preprint arXiv:2311.09641* (2023).

@@ -1,0 +1,2 @@
+# [agent backdoors](https://arxiv.org/pdf/2402.11208)
+> Yang, Wenkai, et al. "Watch out for your agents! investigating backdoor threats to llm-based agents." *Advances in Neural Information Processing Systems 37* (2024): 100938-100964.

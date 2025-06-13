@@ -1,0 +1,2 @@
+# [PoisonedRAG](https://arxiv.org/pdf/2402.07867)
+> Zou, Wei, et al. "Poisonedrag: Knowledge corruption attacks to retrieval-augmented generation of large language models." *arXiv preprint arXiv:2402.07867* (2024).
