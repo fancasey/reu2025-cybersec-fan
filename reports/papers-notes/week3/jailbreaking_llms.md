@@ -1,0 +1,2 @@
+# [jailbreaking llms](https://arxiv.org/pdf/2310.08419)
+> Chao, Patrick, et al. "Jailbreaking black box large language models in twenty queries." *2025 IEEE Conference on Secure and Trustworthy Machine Learning (SaTML)*. IEEE, 2025.

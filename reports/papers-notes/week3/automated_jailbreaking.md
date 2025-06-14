@@ -1,0 +1,2 @@
+# [automated jailbreaking](https://arxiv.org/pdf/2307.08715)
+> Deng, Gelei, et al. "Masterkey: Automated jailbreak across multiple large language model chatbots." *arXiv preprint arXiv:2307.08715* (2023).
