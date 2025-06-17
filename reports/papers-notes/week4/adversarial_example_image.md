@@ -1,0 +1,2 @@
+# [Misuing tools in LLMs with visual AEs](https://arxiv.org/pdf/2310.03185)
+> Fu, Xiaohan, et al. "Misusing tools in large language models with visual adversarial examples." *arXiv preprint arXiv:2310.03185* (2023).
