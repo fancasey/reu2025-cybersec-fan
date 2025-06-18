@@ -1,0 +1,2 @@
+# [Jailbreaking](https://arxiv.org/pdf/2404.02151)
+> Andriushchenko, Maksym, Francesco Croce, and Nicolas Flammarion. "Jailbreaking leading safety-aligned llms with simple adaptive attacks." *arXiv preprint arXiv:2404.02151* (2024).
