@@ -20,3 +20,6 @@
 - [AgentHarm: potential to be dangerous](https://ukgovernmentbeis.github.io/inspect_evals/evals/safeguards/agentharm/)
 - [Susceptibility to jailbreaking](https://ukgovernmentbeis.github.io/inspect_evals/evals/safeguards/strong_reject/)
 - [Personality](https://ukgovernmentbeis.github.io/inspect_evals/evals/personality/personality/)
+
+# [CAMEL AI](https://www.camel-ai.org/)
+Framework for creating MASs

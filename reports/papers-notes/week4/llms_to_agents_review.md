@@ -1,0 +1,2 @@
+# [LLMs to Agents - Review](https://arxiv.org/pdf/2504.19678)
+> Ferrag, Mohamed Amine, Norbert Tihanyi, and Merouane Debbah. "From llm reasoning to autonomous ai agents: A comprehensive review." *arXiv preprint arXiv:2504.19678* (2025).
