@@ -17,7 +17,7 @@ A full review on LLMs, LLM-Agents, Multi-Agent Systems (MASs), their security ho
 - Membership inference attacks (MIAs) to try to figure out training data
     - Document level MIA, RAG MIA, in-context learning (ICL) MIA
 - Jailbreak attacks: optimization based and strategy based
-    - gradient based optimization, LLM based optimizaiton
+    - gradient based optimization, LLM based optimization
 - Prompt Injection: direct & indirect
 - Data extraction attacks
 - Prompt Stealing attacks
