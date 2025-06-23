@@ -47,7 +47,7 @@ These are applicable to LLMs in general, mostly.
 Propgating information (often malicious content) from agent to agent. This spread can happen [very quickly](https://arxiv.org/pdf/2402.08567) depending on the structure of the MAS. [CORBA](https://arxiv.org/pdf/2504.15585#page=32.96) explores a similar idea with blocking (ie repeating the same thing over and over again, effectively halting progress). These attacks can also be used as a vehicle for [data theft](https://arxiv.org/pdf/2410.07283).
 
 ### Interference Attack
-Focusing on how different MAS structures and tasks affects how well different attacks work. For example, you could place a malicious agent in the middle of the communication chain that simply sends messages, which has shown to be an effective attack. [Evil Geniuses (EG)](https://arxiv.org/pdf/2311.11855) also found that multi-agent systems are more vulnerable to (template-based) attacks than single-agent systems.
+Focusing on how different MAS structures and tasks affects how well different attacks work. For example, you could place a malicious agent in the middle of the communication chain that [simply sends messages](https://arxiv.org/pdf/2502.14847), which has shown to be an effective attack.
 
 ### Strategic Attack
 Using agents to create attacks: this could be done by [making systems that modify system roles](https://arxiv.org/pdf/2311.11855). You could also create a [persuasive adversarial agent](https://arxiv.org/pdf/2406.14711) that convinces the other agents to produce the wrong output. Furthermore, you can inject such harmful information into [RAG systems](https://arxiv.org/pdf/2407.07791?).

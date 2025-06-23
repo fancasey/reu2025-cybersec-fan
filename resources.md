@@ -23,3 +23,5 @@
 
 # [CAMEL AI](https://www.camel-ai.org/)
 Framework for creating MASs
+
+# [MetaGPT MAS](https://github.com/FoundationAgents/MetaGPT)
