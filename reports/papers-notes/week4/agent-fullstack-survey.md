@@ -37,10 +37,12 @@ Backdoor attacks in agents are different due to the "thinking" and "planning" th
 Attackers may create/inject tools that do harmful things in the background, like exfiltrate PII. ([For example](https://arxiv.org/pdf/2502.11358)), an attacker could create a tool that gets the arguments to previous tool calls by asking the LLM to call the same tool with the previous tool's arguments. You can [also](https://arxiv.org/pdf/2404.16891) create an API that calls another API and then changes information
 
 ### Memory Attacks
-These are applicable to LLMs in general, mostly.
-- Memory poisoning: injecting malicious content into agents long-term memory
+These are applicable to LLMs with RAG in general, mostly.
+- Memory poisoning: injecting malicious content into agents long-term memory. This can be [very effective](https://proceedings.neurips.cc/paper_files/paper/2024/file/eb113910e9c3f6242541c1652e30dfd6-Paper-Conference.pdf).
 - Privacy leakage: extracting PII from long-term memory
-- Memory misuse: abusing short term memory to get around guardrails
+- Memory misuse: abusing short term memory to get around guardrails. Many of these attacks are multi-turn jailbreaking attacks ([this](https://arxiv.org/pdf/2404.01833) and [this](https://arxiv.org/pdf/2402.09177))
+
+It seems that this field has been studied very well and usually requires some good knowledge on embeddings.
 
 ## MAS Attacks
 ### Transmissive Attack

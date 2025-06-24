@@ -1,0 +1,5 @@
+# [Agents are more vulnerable than LLMs](https://arxiv.org/pdf/2410.13886#page=1.03)
+> Kumar, Priyanshu, Elaine Lau, Saranya Vijayakumar, Tu Trinh, Scale Red Team, Elaine Chang, Vaughn Robinson et al. "Refusal-trained llms are easily jailbroken as browser agents." *arXiv preprint arXiv:2410.13886* (2024).
+
+## Overview
+Tested chat behaviors (on LLMs) and browser behaviors (on web agents) for harmful tasks, both through direct asking and with some attacks. The authors found that the web agent was much much more vulnerable to thses attacks than the LLMs, as measured by the refusal rate. They hypothosize that this is due to the longer contexts that browser agents often have to have and the more complex inputs that come from browser interfaces. They did a sanity check for the context length by adding a long Wikipedia article before the chat behavior, but still found that the LLM did much better than the agent. They also noticed in the trajectories that while the text output from the agent was that they were unable to help, they often continued with the attack in their thoughts/actions. Used LLM-as-judge for evaluation.
