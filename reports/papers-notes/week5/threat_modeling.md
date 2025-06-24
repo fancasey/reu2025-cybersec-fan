@@ -1,5 +1,5 @@
 # [Threat modeling](Secure%20Design%20Principles.pptx)
-> Xu, Dianxiang. "Threat Modeling." Powerpoint, CS 483/5583 Software Security, Kansas City, MO.
+> Xu, Dianxiang. "Threat Modeling." Presentation, CS 483/5583 Software Security, Kansas City, MO.
 
 ## Tools
 - [MS Threat Modeling Tool](https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool)
