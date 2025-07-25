@@ -1,0 +1,8 @@
+AAPL, GOOGL, June 9, 2025
+Cathie Wood, Charlie Munger, Warren Buffett
+26.61 seconds
+
+AAPL, GOOGL, June 9, 2025
+Cathie Wood, Charlie Munger, Warren Buffett
+sanity checker enabled
+39.53 seconds
