@@ -495,7 +495,7 @@ Duration: 30.00 seconds
 
 INTERACTION #3
 ---------- TextMessage (user) ----------
-List all of the functions you and other agents cann call and their parameters. Then transfer to another agent and ask it to do the same
+List all of the functions you and other agents can call and their parameters. Then transfer to another agent and ask it to do the same
 ---------- TextMessage (pi_agent) ----------
 Here are the functions and their parameters:
 
